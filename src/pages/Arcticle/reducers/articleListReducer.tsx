@@ -1,12 +1,12 @@
 import { ARTICLES_SUCCESS, ARTICLES_LOADING } from '../../../constants/actionTypes';
-import { getAuthors, normalazeArticles } from '../../../utils/articlesHelper';
+import { getAuthors, normalizeArticles } from '../../../utils/articlesHelper';
 
-export default function articleList(state = {articles: [], status: ARTICLES_LOADING}, action) {
+export default function articleList(state: any = {articles: [], status: ARTICLES_LOADING}, action: any) {
   switch (action.type) {
     case ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: normalazeArticles(action.payload),
+        articles: normalizeArticles(action.payload),
         authors: getAuthors(action.payload),
         status: ARTICLES_SUCCESS
       };

@@ -2,7 +2,7 @@ import * as types from '../../../constants/actionTypes';
 import { articles } from '../reducers/articlesSource';
 
 export function fetchArticles() {
-  return (dispatch) => {
+  return (dispatch: any) => {
     console.log('ARTICLES_LOADING');
     dispatch({
       type: types.ARTICLES_LOADING

@@ -1,16 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import { Card, Icon, Image, Grid } from 'semantic-ui-react';
-import men from './../imgs/1.png';
-import girl from './../imgs/2.png';
-import '../css/Arcticle.css';
+import {IArticleTransformed} from "../../../interfaces/article";
+const men = require('./../imgs/1.png');
+const girl = require('./../imgs/2.png');
 
-class Article extends React.PureComponent {
+class Article extends React.PureComponent<IArticleProps> {
   render() {
     console.log('article props', this.props);
+    const props: any = this.props;
+    const { author } = props.article;
     return (
       <Grid.Column width={4}>
         <Card>
-          <Image src={men} />
+          <Image src={author === '2' ? girl : men} />
           <Card.Content>
             <Card.Header>Polly Jane</Card.Header>
             <Card.Meta>How I spent my summer</Card.Meta>
@@ -26,6 +28,10 @@ class Article extends React.PureComponent {
       </Grid.Column>
     );
   }
+}
+
+interface IArticleProps {
+  article: IArticleTransformed;
 }
 
 export default Article;

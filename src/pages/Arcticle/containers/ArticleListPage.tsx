@@ -1,22 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../actions/articleActions.jsx';
-import Article from '../components/Article.jsx';
-import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
 import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
+import * as actions from '../actions/articleActions';
+import Article from '../components/Article';
+import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
+import { IArticleTransformed } from "../../../interfaces/article";
 
-class ArticleListPage extends React.PureComponent {
+class ArticleListPage extends React.PureComponent<IArticleListProps> {
 
   componentWillMount() {
     this.props.actions.fetchArticles();
   }
 
   render() {
-    console.log('props', this.props.articleList);
     const { status, articles } = this.props.articleList;
     let component;
+
     if (status === ARTICLES_SUCCESS && !articles.length) {
       component = (
         <div className="pt-xs">
@@ -47,20 +47,23 @@ class ArticleListPage extends React.PureComponent {
   }
 }
 
-ArticleListPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  articleList: PropTypes.object.isRequired
-};
+interface IArticleListProps {
+  articleList: {
+    status: string;
+    articles: Array<IArticleTransformed>;
+  };
+  actions: any;
+}
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return {
     articleList: state.articleList
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: any) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators<any>(actions, dispatch)
   };
 }
 

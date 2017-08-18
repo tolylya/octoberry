@@ -1,8 +1,9 @@
-import cloneDeep from 'clone-deep';
+const cloneDeep = require('clone-deep');
+import {IArticle, IArticleTransformed, IAuthor} from '../interfaces/article';
 
-export function getAuthors(articles) {
-  const authors = [];
-  const authorsId = [];
+export function getAuthors(articles: Array<IArticle>): Array<IAuthor> {
+  const authors: Array<IAuthor> = [];
+  const authorsId: Array<string> = [];
 
   for (const article of articles) {
     if (!authorsId.includes(article.author.id)) {
@@ -20,8 +21,8 @@ export function getAuthors(articles) {
   return authors;
 }
 
-export function normalazeArticles(articles) {
-  const newArticles = cloneDeep(articles);
+export function normalizeArticles(articles: Array<IArticle>): Array<IArticleTransformed> {
+  const newArticles: Array<any> = cloneDeep(articles);
 
   for (const article of newArticles) {
     article.author = article.author.id;
