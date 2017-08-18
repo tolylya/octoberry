@@ -30,6 +30,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "clone-deep": "1.0.0",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
