@@ -5,7 +5,7 @@ import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
 import * as actions from '../actions/articleActions';
 import Article from '../components/Article';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import { IArticleTransformed } from "../../../interfaces/article";
+import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
 
@@ -14,7 +14,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
   }
 
   render() {
-    const { status, articles } = this.props.articleList;
+    const { status, articles, authors } = this.props;
     let component;
 
     if (status === ARTICLES_SUCCESS && !articles.length) {
@@ -25,7 +25,10 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
       );
     } else if (status === ARTICLES_SUCCESS) {
       component = (
-        articles.map(article => <Article key={article.id} article={article}/>)
+        articles.map(article => {
+          const author = authors.find(author => author.id === article.author);
+          return <Article key={article.id} article={article} author={author} />;
+        })
       );
     } else {
       component = <Loader active inline='centered' />;
@@ -48,16 +51,17 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
 }
 
 interface IArticleListProps {
-  articleList: {
-    status: string;
-    articles: Array<IArticleTransformed>;
-  };
+  status: string;
+  articles: Array<IArticleTransformed>;
+  authors: Array<IAuthor>;
   actions: any;
 }
 
 function mapStateToProps(state: any) {
   return {
-    articleList: state.articleList
+    status: state.articleList.status,
+    articles: state.articleList.articles,
+    authors: state.articleList.authors
   };
 }
 
