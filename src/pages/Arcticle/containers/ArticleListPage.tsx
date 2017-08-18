@@ -6,9 +6,9 @@ import * as actions from '../actions/articleActions';
 import Article from '../components/Article';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
 import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
+import Sidebar from '../components/Sidebar';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
-
   componentWillMount() {
     this.props.actions.fetchArticles();
   }
@@ -27,7 +27,11 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
       component = (
         articles.map(article => {
           const author = authors.find(author => author.id === article.author);
-          return <Article key={article.id} article={article} author={author} />;
+          return (
+            <Grid.Column width={6} key={article.id}>
+              <Article key={article.id} article={article} author={author} />
+            </Grid.Column>
+          );
         })
       );
     } else {
@@ -43,7 +47,14 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
           </Header.Content>
         </Header>
         <Grid>
-          { component }
+          <Grid.Column width={12}>
+            <Grid>
+              { component }
+            </Grid>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Sidebar authors={authors} />
+          </Grid.Column>
         </Grid>
       </div>
     );
