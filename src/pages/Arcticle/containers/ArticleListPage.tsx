@@ -37,6 +37,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
                 article={article}
                 author={author}
                 showAuthorComments={this.props.actions.showAuthorComments}
+                changeAuthorName={this.props.actions.changeAuthorName}
               />
             );
           })
@@ -44,7 +45,10 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
       } else if (mode === 'comments') {
         component = (
           <Comment.Group>
-            {comments.map(comment => <CommentComponent key={comment.id} comment={comment} />)}
+            {comments.map(comment => {
+              const author = authors.find(author => author.id === comment.commenter.id);
+              return <CommentComponent key={comment.id} comment={comment} author={author} />
+            })}
           </Comment.Group>
         );
       }

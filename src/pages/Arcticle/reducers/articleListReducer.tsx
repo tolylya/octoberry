@@ -1,8 +1,10 @@
 import {
-  ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS
+  ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS, CHANGE_AUTHOR_NAME
 } from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
-import {IArticleTransformed, IAuthor, IComment} from "../../../interfaces/article";
+import { IArticleTransformed, IAuthor, IComment } from "../../../interfaces/article";
+
+const cloneDeep = require('clone-deep');
 
 const initialState: IArticleList = {
   articles: [],
@@ -35,6 +37,12 @@ export default function articleList(state: IArticleList = initialState, action: 
 
     case SHOW_AUTHOR_COMMENTS:
       return {...state, selectedAuthorId: action.payload, mode: 'comments'};
+
+    case CHANGE_AUTHOR_NAME:
+      const newState = cloneDeep(state);
+      const author = newState.authors.find((author: IAuthor) => author.id === action.payload.authorId);
+      author.name = action.payload.newName;
+      return newState;
 
     default:
       return state;

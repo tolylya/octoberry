@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {IComment} from '../../../interfaces/article';
+import {IAuthor, IComment} from '../../../interfaces/article';
 import {Comment} from 'semantic-ui-react';
 
 const men = require('./../imgs/1.png');
@@ -8,12 +8,12 @@ const girl = require('./../imgs/2.png');
 class CommentComponent extends React.PureComponent<ICommentProps> {
 
   render() {
-    const comment = this.props.comment;
+    const { comment, author } = this.props;
     return (
       <Comment>
         <Comment.Avatar as='a' src={comment.commenter.id === '2' ? men : girl} />
         <Comment.Content>
-          <Comment.Author as='a'>{comment.commenter.name}</Comment.Author>
+          <Comment.Author as='a'>{author.name}</Comment.Author>
           <Comment.Metadata>
             <span>Today at 5:42PM</span>
           </Comment.Metadata>
@@ -29,6 +29,7 @@ class CommentComponent extends React.PureComponent<ICommentProps> {
 
 interface ICommentProps {
   comment: IComment;
+  author: IAuthor;
 }
 
 export default CommentComponent;

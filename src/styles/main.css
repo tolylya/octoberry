@@ -5,3 +5,7 @@
 .capitalize {
   text-transform:capitalize;
 }
+
+.min-height-content {
+  min-height: 130px;
+}

@@ -42,9 +42,19 @@ export function showAuthorComments(authorId: string) {
   }
 }
 
+export function changeAuthorName(authorId: string, newName: string) {
+  return (dispatch: any) => {
+    dispatch({
+      type: types.CHANGE_AUTHOR_NAME,
+      payload: { authorId, newName }
+    });
+  }
+}
+
 export interface IArticleActions {
   fetchArticles: Function;
   changeMode: Function;
   selectAuthor: Function;
   showAuthorComments: Function;
+  changeAuthorName: Function;
 }
