@@ -10,7 +10,7 @@ class Article extends React.PureComponent<IArticleProps> {
     const articleAuthor = this.props.author;
 
     return (
-      <Card>
+      <Card className="inline-block mr-xs mb-xs">
         <Image src={author === '2' ? girl : men} />
         <Card.Content>
           <Card.Header>{articleAuthor.name}</Card.Header>

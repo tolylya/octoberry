@@ -7,6 +7,8 @@ import Article from '../components/Article';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
 import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 import Sidebar from '../components/Sidebar';
+import { IArticleActions } from '../actions/articleActions';
+import { IArticleList } from "../reducers/articleListReducer";
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {
@@ -14,7 +16,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
   }
 
   render() {
-    const { status, articles, authors } = this.props;
+    const { status, articles, authors, mode } = this.props;
     let component;
 
     if (status === ARTICLES_SUCCESS && !articles.length) {
@@ -28,9 +30,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         articles.map(article => {
           const author = authors.find(author => author.id === article.author);
           return (
-            <Grid.Column width={6} key={article.id}>
               <Article key={article.id} article={article} author={author} />
-            </Grid.Column>
           );
         })
       );
@@ -47,13 +47,16 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
           </Header.Content>
         </Header>
         <Grid>
-          <Grid.Column width={12}>
-            <Grid>
-              { component }
-            </Grid>
+          <Grid.Column width={13}>
+            { component }
           </Grid.Column>
-          <Grid.Column width={4}>
-            <Sidebar authors={authors} />
+          <Grid.Column width={3}>
+            <Sidebar
+              authors={authors}
+              mode={mode}
+              changeMode={this.props.actions.changeMode}
+              selectAuthor={this.props.actions.selectAuthor}
+            />
           </Grid.Column>
         </Grid>
       </div>
@@ -65,14 +68,20 @@ interface IArticleListProps {
   status: string;
   articles: Array<IArticleTransformed>;
   authors: Array<IAuthor>;
-  actions: any;
+  actions: IArticleActions;
+  mode: string;
+  selectedAuthorId: string;
 }
 
 function mapStateToProps(state: any) {
+  const articleList: IArticleList = state.articleList;
   return {
-    status: state.articleList.status,
-    articles: state.articleList.articles,
-    authors: state.articleList.authors
+    status: articleList.status,
+    articles: articleList.selectedAuthorId ?
+      articleList.articles.filter(article => article.author === articleList.selectedAuthorId) : articleList.articles,
+    authors: articleList.authors,
+    mode: articleList.mode,
+    selectedAuthorId: articleList.selectedAuthorId
   };
 }
 
