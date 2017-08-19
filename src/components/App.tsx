@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import '../styles/global.css';
 
 // This is a class-based component because the current
@@ -14,9 +13,5 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  children: PropTypes.element
-};
 
 export default App;

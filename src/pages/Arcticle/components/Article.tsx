@@ -30,7 +30,7 @@ class Article extends React.PureComponent<IArticleProps> {
   };
 
   render() {
-    const { author, title, text, comments } = this.props.article;
+    const { author, title, text, comments, id } = this.props.article;
     const articleAuthor = this.props.author;
     let authorName;
 
@@ -61,7 +61,7 @@ class Article extends React.PureComponent<IArticleProps> {
     }
 
     return (
-      <Card className="inline-block mr-xs mb-xs">
+      <Card className="inline-block mr-xs mb-xs mt-xs">
         <Image src={author === '2' ? men : girl} />
         <Card.Content className="min-height-content">
           <Card.Header as="a">
@@ -71,7 +71,7 @@ class Article extends React.PureComponent<IArticleProps> {
           <Card.Description>{text}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Link to="/badlink">
+          <Link to={`/article/${id}`}>
             <Icon name='comment' />
             {comments.length} Comments
           </Link>
