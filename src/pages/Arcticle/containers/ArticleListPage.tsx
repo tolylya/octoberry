@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
-import * as actions from '../actions/articleActions';
+import { Grid, Header, Icon, Loader, Comment } from 'semantic-ui-react';
 import Article from '../components/Article';
-import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 import Sidebar from '../components/Sidebar';
+import CommentComponent from '../components/Comment';
+import * as actions from '../actions/articleActions';
 import { IArticleActions } from '../actions/articleActions';
-import { IArticleList } from "../reducers/articleListReducer";
+import { IArticleList } from '../reducers/articleListReducer';
+import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
+import {IArticleTransformed, IAuthor, IComment} from '../../../interfaces/article';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {
@@ -16,7 +17,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
   }
 
   render() {
-    const { status, articles, authors, mode } = this.props;
+    const { status, articles, authors, mode, comments } = this.props;
     let component;
 
     if (status === ARTICLES_SUCCESS && !articles.length) {
@@ -26,21 +27,29 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         </div>
       );
     } else if (status === ARTICLES_SUCCESS) {
-      component = (
-        articles.map(article => {
-          const author = authors.find(author => author.id === article.author);
-          return (
+      if (mode === 'articles') {
+        component = (
+          articles.map(article => {
+            const author = authors.find(author => author.id === article.author);
+            return (
               <Article key={article.id} article={article} author={author} />
-          );
-        })
-      );
+            );
+          })
+        );
+      } else if (mode === 'comments') {
+        component = (
+          <Comment.Group>
+            {comments.map(comment => <CommentComponent key={comment.id} comment={comment} />)}
+          </Comment.Group>
+        );
+      }
     } else {
       component = <Loader active inline='centered' />;
     }
 
     return (
       <div className="pt-xs">
-        <Header as='h2'>
+        <Header as='h2' dividing>
           <Icon name='tags' />
           <Header.Content>
             Articles
@@ -69,6 +78,7 @@ interface IArticleListProps {
   articles: Array<IArticleTransformed>;
   authors: Array<IAuthor>;
   actions: IArticleActions;
+  comments: Array<IComment>;
   mode: string;
   selectedAuthorId: string;
 }
@@ -81,6 +91,8 @@ function mapStateToProps(state: any) {
       articleList.articles.filter(article => article.author === articleList.selectedAuthorId) : articleList.articles,
     authors: articleList.authors,
     mode: articleList.mode,
+    comments: articleList.selectedAuthorId ?
+      articleList.comments.filter(comment => comment.commenter.id === articleList.selectedAuthorId) : articleList.comments,
     selectedAuthorId: articleList.selectedAuthorId
   };
 }

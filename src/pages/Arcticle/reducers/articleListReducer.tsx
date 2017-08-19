@@ -1,12 +1,13 @@
 import {ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR} from '../../../constants/actionTypes';
-import { getAuthors, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor } from "../../../interfaces/article";
+import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
+import {IArticleTransformed, IAuthor, IComment} from "../../../interfaces/article";
 
 const initialState: IArticleList = {
   articles: [],
   status: ARTICLES_LOADING,
   authors: [],
   selectedAuthorId: null,
+  comments: [],
   mode: 'articles'
 };
 
@@ -17,6 +18,7 @@ export default function articleList(state: IArticleList = initialState, action: 
         ...state,
         articles: normalizeArticles(action.payload),
         authors: getAuthors(action.payload),
+        comments: getComments(action.payload),
         status: ARTICLES_SUCCESS
       };
 
@@ -39,5 +41,6 @@ export interface IArticleList {
   status: string;
   authors: Array<IAuthor>;
   selectedAuthorId: string;
+  comments: Array<IComment>;
   mode: string;
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
+
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
 
@@ -11,7 +12,7 @@ class Article extends React.PureComponent<IArticleProps> {
 
     return (
       <Card className="inline-block mr-xs mb-xs">
-        <Image src={author === '2' ? girl : men} />
+        <Image src={author === '2' ? men : girl} />
         <Card.Content>
           <Card.Header>{articleAuthor.name}</Card.Header>
           <Card.Meta>{title}</Card.Meta>
