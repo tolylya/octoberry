@@ -1,4 +1,6 @@
-import {ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR} from '../../../constants/actionTypes';
+import {
+  ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS
+} from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
 import {IArticleTransformed, IAuthor, IComment} from "../../../interfaces/article";
 
@@ -30,6 +32,9 @@ export default function articleList(state: IArticleList = initialState, action: 
 
     case SELECT_AUTHOR:
       return {...state, selectedAuthorId: action.payload};
+
+    case SHOW_AUTHOR_COMMENTS:
+      return {...state, selectedAuthorId: action.payload, mode: 'comments'};
 
     default:
       return state;

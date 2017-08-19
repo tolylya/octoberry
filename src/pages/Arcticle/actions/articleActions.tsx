@@ -33,8 +33,18 @@ export function selectAuthor(authorId: string | null) {
   }
 }
 
+export function showAuthorComments(authorId: string) {
+  return (dispatch: any) => {
+    dispatch({
+      type: types.SHOW_AUTHOR_COMMENTS,
+      payload: authorId
+    });
+  }
+}
+
 export interface IArticleActions {
   fetchArticles: Function;
   changeMode: Function;
   selectAuthor: Function;
+  showAuthorComments: Function;
 }

@@ -42,6 +42,7 @@ class Sidebar extends React.PureComponent<ISidebarProps> {
           selection
           placeholder='Select author'
           options={options}
+          value={this.props.selectedAuthorId}
           onChange={this.selectAuthor}
         />
       </div>
@@ -54,6 +55,7 @@ interface ISidebarProps {
   mode: string;
   changeMode: Function;
   selectAuthor: Function;
+  selectedAuthorId: string;
 }
 
 export default Sidebar;

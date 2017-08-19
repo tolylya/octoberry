@@ -32,7 +32,12 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
           articles.map(article => {
             const author = authors.find(author => author.id === article.author);
             return (
-              <Article key={article.id} article={article} author={author} />
+              <Article
+                key={article.id}
+                article={article}
+                author={author}
+                showAuthorComments={this.props.actions.showAuthorComments}
+              />
             );
           })
         );
@@ -50,9 +55,9 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
     return (
       <div className="pt-xs">
         <Header as='h2' dividing>
-          <Icon name='tags' />
-          <Header.Content>
-            Articles
+          <Icon name={mode==='comments'?'comments':'tags'} />
+          <Header.Content className="capitalize">
+            {mode}
           </Header.Content>
         </Header>
         <Grid>
@@ -65,6 +70,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
               mode={mode}
               changeMode={this.props.actions.changeMode}
               selectAuthor={this.props.actions.selectAuthor}
+              selectedAuthorId={this.props.selectedAuthorId}
             />
           </Grid.Column>
         </Grid>
