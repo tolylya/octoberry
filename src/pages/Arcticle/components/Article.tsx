@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 
@@ -70,10 +71,10 @@ class Article extends React.PureComponent<IArticleProps> {
           <Card.Description>{text}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
+          <Link to="/badlink">
             <Icon name='comment' />
             {comments.length} Comments
-          </a>
+          </Link>
         </Card.Content>
       </Card>
     );

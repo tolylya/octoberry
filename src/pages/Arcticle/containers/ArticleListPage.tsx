@@ -22,7 +22,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
 
     if (status === ARTICLES_SUCCESS && !articles.length) {
       component = (
-        <div className="pt-xs">
+        <div>
           Articles not found
         </div>
       );
@@ -57,7 +57,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
     }
 
     return (
-      <div className="pt-xs">
+      <div>
         <Header as='h2' dividing>
           <Icon name={mode==='comments'?'comments':'tags'} />
           <Header.Content className="capitalize">

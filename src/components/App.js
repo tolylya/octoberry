@@ -8,7 +8,7 @@ import '../styles/global.css';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="pt-xs">
         {this.props.children}
       </div>
     );
