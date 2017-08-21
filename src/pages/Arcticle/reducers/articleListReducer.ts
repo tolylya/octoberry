@@ -2,7 +2,7 @@ import {
   ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS, CHANGE_AUTHOR_NAME
 } from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor, IComment } from "../../../interfaces/article";
+import { IArticleTransformed, IAuthor, IComment } from '../../../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 

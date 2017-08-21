@@ -1,4 +1,4 @@
-import * as ActionTypes from '../constants/actionTypes';
+import * as ActionTypes from '../constants/actionTypes.ts';
 
 import MockDate from 'mockdate';
 import { createStore } from 'redux';
@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import calculator from '../utils/fuelSavingsCalculator';
 import {getFormattedDateTime} from '../utils/dateHelper';
 import initialState from '../reducers/initialState';
-import rootReducer from '../reducers';
+import rootReducer from '../reducers/index.ts';
 
 describe('Store', () => {
   let dateModified;

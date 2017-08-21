@@ -30,7 +30,7 @@ const filesToCreate = [
     content: '// Set up your application entry point here...'
   },
   {
-    path: './src/reducers/index.js',
+    path: './src/reducers/index.ts',
     content: '// Set up your root reducer here...\n import { combineReducers } from \'redux\';\n export default combineReducers;'
   }
 ];
