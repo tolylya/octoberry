@@ -1,24 +1,27 @@
-import * as types from '../../../constants/actionTypes';
 import { articles } from '../reducers/articlesSource';
+import {
+  ARTICLES_LOADING, ARTICLES_SUCCESS, CHANGE_AUTHOR_NAME, CHANGE_MODE, SELECT_AUTHOR,
+  SHOW_AUTHOR_COMMENTS
+} from '../../../constants/actionTypes';
 
 export function fetchArticles() {
   return (dispatch: any) => {
     dispatch({
-      type: types.ARTICLES_LOADING
+      type: ARTICLES_LOADING
     });
     setTimeout(() => {
       dispatch({
-        type: types.ARTICLES_SUCCESS,
+        type: ARTICLES_SUCCESS,
         payload: articles
       });
-    }, 1500);
+    }, 500);
   };
 }
 
 export function changeMode(value: string) {
   return (dispatch: any) => {
     dispatch({
-      type: types.CHANGE_MODE,
+      type: CHANGE_MODE,
       payload: value
     });
   }
@@ -27,7 +30,7 @@ export function changeMode(value: string) {
 export function selectAuthor(authorId: string | null) {
   return (dispatch: any) => {
     dispatch({
-      type: types.SELECT_AUTHOR,
+      type: SELECT_AUTHOR,
       payload: authorId
     });
   }
@@ -36,7 +39,7 @@ export function selectAuthor(authorId: string | null) {
 export function showAuthorComments(authorId: string) {
   return (dispatch: any) => {
     dispatch({
-      type: types.SHOW_AUTHOR_COMMENTS,
+      type: SHOW_AUTHOR_COMMENTS,
       payload: authorId
     });
   }
@@ -45,13 +48,13 @@ export function showAuthorComments(authorId: string) {
 export function changeAuthorName(authorId: string, newName: string) {
   return (dispatch: any) => {
     dispatch({
-      type: types.CHANGE_AUTHOR_NAME,
+      type: CHANGE_AUTHOR_NAME,
       payload: { authorId, newName }
     });
   }
 }
 
-export interface IArticleActions {
+export interface IArticleListActions {
   fetchArticles: Function;
   changeMode: Function;
   selectAuthor: Function;

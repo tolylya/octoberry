@@ -8,8 +8,8 @@ import ArticleDetailPage from './pages/Arcticle/containers/ArticleDetailPage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={ArticleListPage}/>
-    <Route path="article/:id" component={ArticleDetailPage}/>
-    <Route path="*" component={NotFoundPage}/>
+    <IndexRoute component={ArticleListPage} />
+    <Route path="articles/:id" component={ArticleDetailPage} />
+    <Route path="*" component={NotFoundPage} />
   </Route>
 );

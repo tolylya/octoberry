@@ -8,6 +8,7 @@ class ArticleDetailPage extends React.PureComponent<IArticleDetailProps> {
   }
 
   render() {
+    console.log('this.props', this.props);
     return (<div>
       asd
     </div>

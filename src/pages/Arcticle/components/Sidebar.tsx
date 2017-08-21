@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Radio, Dropdown } from 'semantic-ui-react';
-import {IAuthor} from "../../../interfaces/article";
+import { IAuthor } from "../../../interfaces/article";
 
 class Sidebar extends React.PureComponent<ISidebarProps> {
 

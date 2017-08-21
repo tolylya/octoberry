@@ -71,7 +71,7 @@ class Article extends React.PureComponent<IArticleProps> {
           <Card.Description>{text}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Link to={`/article/${id}`}>
+          <Link to={`/articles/${id}`}>
             <Icon name='comment' />
             {comments.length} Comments
           </Link>

@@ -5,11 +5,11 @@ import { Grid, Header, Icon, Loader, Comment } from 'semantic-ui-react';
 import Article from '../components/Article';
 import Sidebar from '../components/Sidebar';
 import CommentComponent from '../components/Comment';
-import * as actions from '../actions/articleActions';
-import { IArticleActions } from '../actions/articleActions';
+import * as actions from '../actions/articleListActions';
+import { IArticleListActions } from '../actions/articleListActions';
 import { IArticleList } from '../reducers/articleListReducer';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import {IArticleTransformed, IAuthor, IComment} from '../../../interfaces/article';
+import { IArticleTransformed, IAuthor, IComment } from '../../../interfaces/article';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {
@@ -87,7 +87,7 @@ interface IArticleListProps {
   status: string;
   articles: Array<IArticleTransformed>;
   authors: Array<IAuthor>;
-  actions: IArticleActions;
+  actions: IArticleListActions;
   comments: Array<IComment>;
   mode: string;
   selectedAuthorId: string;
