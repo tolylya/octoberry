@@ -9,3 +9,15 @@
 .min-height-content {
   min-height: 130px;
 }
+
+.text-right {
+  text-align: right;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -11,6 +11,7 @@ import {
 import { IArticleList } from '../reducers/articleListReducer';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
 import { IArticleTransformed, IAuthor, ICommentTransformed } from '../../../interfaces/article';
+import { updateComment } from '../actions/articleDetailActions';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {
@@ -45,7 +46,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         );
       } else if (mode === 'comments') {
         component = (
-          <CommentComponent comments={comments} authors={authors} />
+          <CommentComponent comments={comments} authors={authors} updateComment={this.props.actions.updateComment} />
         );
       }
     } else {
@@ -89,6 +90,7 @@ interface IArticleListProps {
     changeAuthorName: Function;
     changeMode: Function;
     fetchArticles: Function;
+    updateComment: Function;
   };
   comments: Array<ICommentTransformed>;
   mode: string;
@@ -112,7 +114,7 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
   return {
     actions: bindActionCreators<any>({
-      showAuthorComments, selectAuthor, changeAuthorName, changeMode, fetchArticles
+      showAuthorComments, selectAuthor, changeAuthorName, changeMode, fetchArticles, updateComment
     }, dispatch)
   };
 }

@@ -28,7 +28,7 @@ export interface IComment extends ICommentBase{
   commenter: IAuthor;
 }
 
-export interface ICommentTransformed extends ICommentBase{
+export interface ICommentTransformed extends ICommentBase {
   commenter: string;
 }
 

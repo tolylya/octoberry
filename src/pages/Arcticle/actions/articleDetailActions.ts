@@ -1,5 +1,6 @@
-import { ARTICLE_LOADING, ARTICLE_SUCCESS } from '../../../constants/actionTypes';
+import { ARTICLE_LOADING, ARTICLE_SUCCESS, UPDATE_COMMENT } from '../../../constants/actionTypes';
 import { articles } from '../reducers/articlesSource';
+import { ICommentEditing } from '../components/Comment';
 
 export function fetchArticle(articleId: string) {
   return (dispatch: any) => {
@@ -12,5 +13,14 @@ export function fetchArticle(articleId: string) {
         payload: articles.find(article => article.id === articleId)
       });
     }, 500);
+  };
+}
+
+export function updateComment(editing: ICommentEditing) {
+  return (dispatch: any) => {
+    dispatch({
+      type: UPDATE_COMMENT,
+      payload: editing
+    });
   };
 }
