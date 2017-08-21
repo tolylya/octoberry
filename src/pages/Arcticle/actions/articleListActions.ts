@@ -53,11 +53,3 @@ export function changeAuthorName(authorId: string, newName: string) {
     });
   }
 }
-
-export interface IArticleListActions {
-  fetchArticles: Function;
-  changeMode: Function;
-  selectAuthor: Function;
-  showAuthorComments: Function;
-  changeAuthorName: Function;
-}

@@ -2,7 +2,11 @@ interface IArticleBase {
   id: string;
   title: string;
   text: string;
-  comments: Array<IComment>
+}
+
+interface ICommentBase {
+  id: string;
+  text: string;
 }
 
 export interface IAuthor {
@@ -12,14 +16,19 @@ export interface IAuthor {
 
 export interface IArticle extends IArticleBase {
   author: IAuthor;
+  comments: Array<IComment>
 }
 
 export interface IArticleTransformed extends IArticleBase {
   author: string;
+  comments: Array<ICommentTransformed>
 }
 
-export interface IComment {
-  id: string;
-  text: string;
+export interface IComment extends ICommentBase{
   commenter: IAuthor;
 }
+
+export interface ICommentTransformed extends ICommentBase{
+  commenter: string;
+}
+

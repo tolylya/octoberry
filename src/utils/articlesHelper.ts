@@ -1,5 +1,5 @@
 const cloneDeep = require('clone-deep');
-import { IArticle, IArticleTransformed, IAuthor, IComment } from '../interfaces/article';
+import {IArticle, IArticleTransformed, IAuthor, ICommentTransformed} from '../interfaces/article';
 
 export function getAuthors(articles: Array<IArticle>): Array<IAuthor> {
   const authors: Array<IAuthor> = [];
@@ -34,9 +34,11 @@ export function normalizeArticles(articles: Array<IArticle>): Array<IArticleTran
   return newArticles;
 }
 
-export function getComments(articles: Array<IArticle>): Array<IComment> {
-  const comments: Array<IComment> = [];
-  for (const article of articles) {
+export function getComments(articles: Array<IArticle>): Array<ICommentTransformed> {
+  const comments: Array<ICommentTransformed> = [];
+  const newArticles = normalizeArticles(articles);
+
+  for (const article of newArticles) {
     comments.push(...article.comments);
   }
   return comments;

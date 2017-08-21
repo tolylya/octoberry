@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Grid, Header, Icon, Loader, Comment } from 'semantic-ui-react';
-import Article from '../components/Article';
+import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
+import Article from '../components/ArticleCard';
 import Sidebar from '../components/Sidebar';
 import CommentComponent from '../components/Comment';
-import * as actions from '../actions/articleListActions';
-import { IArticleListActions } from '../actions/articleListActions';
+import {
+  showAuthorComments, selectAuthor, changeAuthorName, changeMode, fetchArticles
+} from '../actions/articleListActions';
 import { IArticleList } from '../reducers/articleListReducer';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import { IArticleTransformed, IAuthor, IComment } from '../../../interfaces/article';
+import {IArticleTransformed, IAuthor, ICommentTransformed} from '../../../interfaces/article';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {
@@ -44,12 +45,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         );
       } else if (mode === 'comments') {
         component = (
-          <Comment.Group>
-            {comments.map(comment => {
-              const author = authors.find(author => author.id === comment.commenter.id);
-              return <CommentComponent key={comment.id} comment={comment} author={author} />
-            })}
-          </Comment.Group>
+          <CommentComponent comments={comments} authors={authors} />
         );
       }
     } else {
@@ -87,8 +83,14 @@ interface IArticleListProps {
   status: string;
   articles: Array<IArticleTransformed>;
   authors: Array<IAuthor>;
-  actions: IArticleListActions;
-  comments: Array<IComment>;
+  actions: {
+    showAuthorComments: Function;
+    selectAuthor: Function;
+    changeAuthorName: Function;
+    changeMode: Function;
+    fetchArticles: Function;
+  };
+  comments: Array<ICommentTransformed>;
   mode: string;
   selectedAuthorId: string;
 }
@@ -102,14 +104,16 @@ function mapStateToProps(state: any) {
     authors: articleList.authors,
     mode: articleList.mode,
     comments: articleList.selectedAuthorId ?
-      articleList.comments.filter(comment => comment.commenter.id === articleList.selectedAuthorId) : articleList.comments,
+      articleList.comments.filter(comment => comment.commenter === articleList.selectedAuthorId) : articleList.comments,
     selectedAuthorId: articleList.selectedAuthorId
   };
 }
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    actions: bindActionCreators<any>(actions, dispatch)
+    actions: bindActionCreators<any>({
+      showAuthorComments, selectAuthor, changeAuthorName, changeMode, fetchArticles
+    }, dispatch)
   };
 }
 

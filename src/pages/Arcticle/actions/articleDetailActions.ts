@@ -14,8 +14,3 @@ export function fetchArticle(articleId: string) {
     }, 500);
   };
 }
-
-
-export interface IArticleDetailActions {
-  fetchArticle: Function;
-}

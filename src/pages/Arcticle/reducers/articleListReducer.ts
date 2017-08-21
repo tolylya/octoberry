@@ -2,7 +2,7 @@ import {
   ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS, CHANGE_AUTHOR_NAME
 } from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor, IComment } from '../../../interfaces/article';
+import {IArticleTransformed, IAuthor, ICommentTransformed} from '../../../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 
@@ -27,7 +27,7 @@ export default function articleList(state: IArticleList = initialState, action: 
       };
 
     case ARTICLES_LOADING:
-      return {...state, articles: [], status: ARTICLES_LOADING};
+      return {...state, articles: [], authors: [], comments: [], status: ARTICLES_LOADING};
 
     case CHANGE_MODE:
       return {...state, mode: action.payload};
@@ -54,6 +54,6 @@ export interface IArticleList {
   status: string;
   authors: Array<IAuthor>;
   selectedAuthorId: string;
-  comments: Array<IComment>;
+  comments: Array<ICommentTransformed>;
   mode: string;
 }

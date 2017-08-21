@@ -14,10 +14,13 @@ export default function articleDetail(state: IArticleDetail = initialState, acti
     case ARTICLE_SUCCESS:
       return {
         ...state,
-        article: normalizeArticles([action.payload]),
+        article: normalizeArticles([action.payload])[0],
         authors: getAuthors([action.payload]),
         status: ARTICLE_SUCCESS
       };
+
+    case ARTICLE_LOADING:
+      return {...state, article: null, authors: [], status: ARTICLE_LOADING};
 
     default:
       return state;

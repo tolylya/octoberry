@@ -6,13 +6,13 @@ import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
 
-class Article extends React.PureComponent<IArticleProps> {
+class ArticleCard extends React.PureComponent<IArticleProps> {
 
-  state = { modalOpened: false, editingName: false };
+  state = { editingName: false };
 
   inputOfAuthorName: any;
 
-  handleKeyPress = (e: any) => {
+  handleKeyUp = (e: any) => {
     if (e.key === 'Enter') {
       this.props.changeAuthorName(this.props.author.id, this.inputOfAuthorName.value);
       this.toggleEditAuthorName();
@@ -43,7 +43,7 @@ class Article extends React.PureComponent<IArticleProps> {
             autoFocus
             ref={(input) => this.inputOfAuthorName = input}
             onBlur={this.toggleEditAuthorName}
-            onKeyUp={this.handleKeyPress}
+            onKeyUp={this.handleKeyUp}
           />
         </div>
       );
@@ -88,4 +88,4 @@ interface IArticleProps {
   changeAuthorName: Function;
 }
 
-export default Article;
+export default ArticleCard;
