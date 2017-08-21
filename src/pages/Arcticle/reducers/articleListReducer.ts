@@ -1,8 +1,9 @@
 import {
-  ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS, CHANGE_AUTHOR_NAME
+  ARTICLES_SUCCESS, ARTICLES_LOADING, CHANGE_MODE, SELECT_AUTHOR, SHOW_AUTHOR_COMMENTS, CHANGE_AUTHOR_NAME,
+  UPDATE_COMMENT
 } from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor, ICommentTransformed } from '../../../interfaces/article';
+import { IArticleTransformed, IAuthor, IComment, ICommentTransformed } from '../../../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 
@@ -16,6 +17,8 @@ const initialState: IArticleList = {
 };
 
 export default function articleList(state: IArticleList = initialState, action: any) {
+  const newState = cloneDeep(state);
+
   switch (action.type) {
     case ARTICLES_SUCCESS:
       return {
@@ -39,9 +42,24 @@ export default function articleList(state: IArticleList = initialState, action: 
       return {...state, selectedAuthorId: action.payload, mode: 'comments'};
 
     case CHANGE_AUTHOR_NAME:
-      const newState = cloneDeep(state);
       const author = newState.authors.find((author: IAuthor) => author.id === action.payload.authorId);
+
       author.name = action.payload.newName;
+
+      return newState;
+
+    case UPDATE_COMMENT:
+      if (newState.articles.length) {
+        let changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
+        let changedComment = newState.comments
+          .find((comment: IComment) => comment.id === action.payload.comment.id);
+
+        if (changedComment && changedAuthor) {
+          changedComment.text = action.payload.editedComment;
+          changedAuthor.name = action.payload.editedAuthorName;
+        }
+      }
+
       return newState;
 
     default:

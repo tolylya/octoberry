@@ -15,7 +15,7 @@ export const articles = [{
         'name': 'John Galt'
       }
     }, {
-      'id': '2',
+      'id': '3',
       'text': 'Ohohoho!',
       'commenter': {
         'id': '1',

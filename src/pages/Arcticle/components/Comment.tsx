@@ -16,14 +16,13 @@ class CommentComponent extends React.PureComponent<ICommentProps, ICommentState>
   };
 
   openModal = (author: IAuthor, comment: ICommentTransformed) => () => {
-    this.editing = {...this.editing, author, comment};
+    this.editing = { author, comment, editedAuthorName: author.name, editedComment: comment.text };
     this.setState({modalOpened: true});
   };
 
   updateComment = () => {
     this.setState({ modalOpened: false });
     this.props.updateComment(this.editing);
-    console.log(this.editing);
   };
 
   closeModal = () => {
