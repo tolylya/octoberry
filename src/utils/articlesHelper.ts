@@ -1,5 +1,6 @@
+import { IArticle, IArticleTransformed, IAuthor, ICommentTransformed } from '../interfaces/article';
+
 const cloneDeep = require('clone-deep');
-import {IArticle, IArticleTransformed, IAuthor, ICommentTransformed} from '../interfaces/article';
 
 export function getAuthors(articles: Array<IArticle>): Array<IAuthor> {
   const authors: Array<IAuthor> = [];

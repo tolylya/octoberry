@@ -10,7 +10,7 @@ import {
 } from '../actions/articleListActions';
 import { IArticleList } from '../reducers/articleListReducer';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import {IArticleTransformed, IAuthor, ICommentTransformed} from '../../../interfaces/article';
+import { IArticleTransformed, IAuthor, ICommentTransformed } from '../../../interfaces/article';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
   componentWillMount() {

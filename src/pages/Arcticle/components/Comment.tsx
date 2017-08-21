@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {IAuthor, ICommentTransformed} from '../../../interfaces/article';
-import {Comment} from 'semantic-ui-react';
+import { Comment } from 'semantic-ui-react';
+import { IAuthor, ICommentTransformed } from '../../../interfaces/article';
 
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
