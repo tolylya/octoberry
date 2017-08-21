@@ -17,8 +17,6 @@ const initialState: IArticleList = {
 };
 
 export default function articleList(state: IArticleList = initialState, action: any) {
-  const newState = cloneDeep(state);
-
   switch (action.type) {
     case ARTICLES_SUCCESS:
       return {
@@ -41,14 +39,18 @@ export default function articleList(state: IArticleList = initialState, action: 
     case SHOW_AUTHOR_COMMENTS:
       return {...state, selectedAuthorId: action.payload, mode: 'comments'};
 
-    case CHANGE_AUTHOR_NAME:
+    case CHANGE_AUTHOR_NAME: {
+      const newState = cloneDeep(state);
       const author = newState.authors.find((author: IAuthor) => author.id === action.payload.authorId);
 
       author.name = action.payload.newName;
 
       return newState;
+    }
 
-    case UPDATE_COMMENT:
+    case UPDATE_COMMENT: {
+      const newState = cloneDeep(state);
+
       if (newState.articles.length) {
         let changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
         let changedComment = newState.comments
@@ -61,6 +63,7 @@ export default function articleList(state: IArticleList = initialState, action: 
       }
 
       return newState;
+    }
 
     default:
       return state;
