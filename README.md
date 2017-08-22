@@ -1,6 +1,6 @@
 # Test application
 
-##How to install app
+## How to install app
 
 1. **Clone the project**. `git clone https://github.com/tolylya/octoberry.git`.
 2. **Run in dev mode**. `npm run start`.
