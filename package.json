@@ -45,6 +45,7 @@
     "semantic-ui-react": "0.71.4"
   },
   "devDependencies": {
+    "@types/enzyme": "2.8.6",
     "@types/jasmine": "2.5.54",
     "@types/jest": "20.0.7",
     "@types/node": "8.0.24",
@@ -81,6 +82,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "20.0.4",
     "jest-cli": "20.0.4",
+    "jest-jasmine2": "20.0.4",
     "json-loader": "0.5.4",
     "mockdate": "2.0.1",
     "node-sass": "4.5.3",
@@ -97,6 +99,7 @@
     "sass-loader": "6.0.6",
     "source-map-loader": "0.2.1",
     "style-loader": "0.18.2",
+    "ts-jest": "20.0.10",
     "typescript": "2.4.2",
     "url-loader": "0.5.9",
     "webpack": "3.1.0",
@@ -111,18 +114,15 @@
     "url": ""
   },
   "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/assetsTransformer.js",
-      "\\.(css|less)$": "<rootDir>/tools/assetsTransformer.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
-      "js",
-      "json",
-      "jsx"
-    ]
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$"
   },
   "babel": {
     "presets": [
