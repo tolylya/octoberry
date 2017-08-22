@@ -45,6 +45,8 @@
     "semantic-ui-react": "0.71.4"
   },
   "devDependencies": {
+    "@types/jasmine": "2.5.54",
+    "@types/jest": "20.0.7",
     "@types/node": "8.0.24",
     "@types/react-redux": "5.0.4",
     "@types/react-router": "3.0.12",
@@ -112,7 +114,15 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/assetsTransformer.js",
       "\\.(css|less)$": "<rootDir>/tools/assetsTransformer.js"
-    }
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
   },
   "babel": {
     "presets": [
