@@ -7,7 +7,7 @@ import { IArticleTransformed, IAuthor, IComment, ICommentTransformed } from '../
 
 const cloneDeep = require('clone-deep');
 
-const initialState: IArticleList = {
+export const initialState: IArticleList = {
   articles: [],
   status: ARTICLES_LOADING,
   authors: [],

@@ -1,8 +1,4 @@
 import { getAuthors, getComments, normalizeArticles } from './articlesHelper';
-// import 'jest';
-// import 'mocha';
-// import {} from 'mocha';
-// import {} from 'jasmine-light'
 
 describe('Helpers::Article', () => {
   const articles = [{
