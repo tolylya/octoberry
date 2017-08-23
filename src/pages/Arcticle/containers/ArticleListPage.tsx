@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Grid, Header, Icon, Loader } from 'semantic-ui-react';
 import Article from '../components/ArticleCard';
 import Sidebar from '../components/Sidebar';
-import CommentComponent from '../components/Comment';
+import CommentsComponent from '../components/Comments';
 import {
   showAuthorComments, selectAuthor, changeAuthorName, changeMode, fetchArticles
 } from '../actions/articleListActions';
@@ -46,7 +46,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         );
       } else if (mode === 'comments') {
         component = (
-          <CommentComponent comments={comments} authors={authors} updateComment={this.props.actions.updateComment} />
+          <CommentsComponent comments={comments} authors={authors} updateComment={this.props.actions.updateComment} />
         );
       }
     } else {

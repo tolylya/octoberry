@@ -1,6 +1,6 @@
 import { ARTICLE_LOADING, ARTICLE_SUCCESS, UPDATE_COMMENT } from '../../../constants/actionTypes';
 import { articles } from '../reducers/articlesSource';
-import { ICommentEditing } from '../components/Comment';
+import { ICommentEditing } from '../components/Comments';
 
 export function fetchArticle(articleId: string) {
   return (dispatch: any) => {

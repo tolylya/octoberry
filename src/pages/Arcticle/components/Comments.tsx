@@ -5,7 +5,7 @@ import { IAuthor, ICommentTransformed } from '../../../interfaces/article';
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
 
-class CommentComponent extends React.PureComponent<ICommentProps, ICommentState> {
+class CommentsComponent extends React.PureComponent<ICommentProps, ICommentState> {
 
   state: ICommentState = { modalOpened: false };
   editing: ICommentEditing = {
@@ -110,4 +110,4 @@ export interface ICommentEditing {
   editedComment: string;
 }
 
-export default CommentComponent;
+export default CommentsComponent;

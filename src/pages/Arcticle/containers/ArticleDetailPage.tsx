@@ -7,7 +7,7 @@ import { changeAuthorName, showAuthorComments } from '../actions/articleListActi
 import { IArticleDetail } from '../reducers/articleDetailReducer';
 import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
 import { ARTICLE_LOADING, ARTICLE_SUCCESS } from '../../../constants/actionTypes';
-import CommentComponent from '../components/Comment';
+import CommentsComponent from '../components/Comments';
 
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
@@ -46,7 +46,7 @@ class ArticleDetailPage extends React.PureComponent<IArticleDetailProps> {
             </Divider>
           </Grid.Column>
           <Grid.Column width={6}>
-            <CommentComponent
+            <CommentsComponent
               comments={article.comments}
               authors={authors}
               updateComment={this.props.actions.updateComment}
