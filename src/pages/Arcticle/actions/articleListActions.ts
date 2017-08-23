@@ -20,7 +20,7 @@ export function fetchArticles() {
 
 export function changeMode(value: string) {
   return (dispatch: any) => {
-    dispatch({
+    return dispatch({
       type: CHANGE_MODE,
       payload: value
     });
@@ -29,7 +29,7 @@ export function changeMode(value: string) {
 
 export function selectAuthor(authorId: string | null) {
   return (dispatch: any) => {
-    dispatch({
+    return dispatch({
       type: SELECT_AUTHOR,
       payload: authorId
     });
@@ -38,7 +38,7 @@ export function selectAuthor(authorId: string | null) {
 
 export function showAuthorComments(authorId: string) {
   return (dispatch: any) => {
-    dispatch({
+    return dispatch({
       type: SHOW_AUTHOR_COMMENTS,
       payload: authorId
     });
@@ -47,7 +47,7 @@ export function showAuthorComments(authorId: string) {
 
 export function changeAuthorName(authorId: string, newName: string) {
   return (dispatch: any) => {
-    dispatch({
+    return dispatch({
       type: CHANGE_AUTHOR_NAME,
       payload: { authorId, newName }
     });

@@ -18,7 +18,7 @@ export function fetchArticle(articleId: string) {
 
 export function updateComment(editing: ICommentEditing) {
   return (dispatch: any) => {
-    dispatch({
+    return dispatch({
       type: UPDATE_COMMENT,
       payload: editing
     });
