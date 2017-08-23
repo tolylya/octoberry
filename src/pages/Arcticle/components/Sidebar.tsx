@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { Radio, Dropdown } from 'semantic-ui-react';
-import { IAuthor } from "../../../interfaces/article";
+import { IAuthor } from '../../../interfaces/article';
 
 class Sidebar extends React.PureComponent<ISidebarProps> {
 
-  changeMode = (e: any, {value}: any) => {
+  changeMode = (e: any, { value }: any) => {
     this.props.changeMode(value);
   };
 
-  selectAuthor = (e: any, {value}: any) => {
+  selectAuthor = (e: any, { value }: any) => {
     this.props.selectAuthor(value);
   };
 
   render() {
     const { authors } = this.props;
-    const options = authors.map(author => {return {value: author.id, text: author.name}});
-    options.unshift({value: null, text: 'Select author'});
+    const options = authors.map((author) => {return { value: author.id, text: author.name }});
+    options.unshift({ value: null, text: 'Select author' });
 
     return (
       <div>
@@ -40,7 +40,7 @@ class Sidebar extends React.PureComponent<ISidebarProps> {
         </div>
         <Dropdown
           selection
-          placeholder='Select author'
+          placeholder="Select author"
           options={options}
           value={this.props.selectedAuthorId}
           onChange={this.selectAuthor}

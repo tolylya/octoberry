@@ -17,7 +17,7 @@ class CommentComponent extends React.PureComponent<ICommentProps, ICommentState>
 
   openModal = (author: IAuthor, comment: ICommentTransformed) => () => {
     this.editing = { author, comment, editedAuthorName: author.name, editedComment: comment.text };
-    this.setState({modalOpened: true});
+    this.setState({ modalOpened: true });
   };
 
   updateComment = () => {
@@ -35,14 +35,14 @@ class CommentComponent extends React.PureComponent<ICommentProps, ICommentState>
 
     return (
       <Comment.Group>
-        {comments.map(comment => {
+        {comments.map((comment) => {
           const author = authors.find(author => author.id === comment.commenter);
 
           return (
             <Comment key={comment.id}>
-              <Comment.Avatar as='a' src={comment.commenter === '2' ? men : girl} />
+              <Comment.Avatar as="a" src={comment.commenter === '2' ? men : girl} />
               <Comment.Content>
-                <Comment.Author as='a'>
+                <Comment.Author as="a">
                   <span onClick={this.openModal(author, comment)} className="pointer">
                     <Icon disabled name="pencil" />
                     {author.name}
@@ -67,20 +67,20 @@ class CommentComponent extends React.PureComponent<ICommentProps, ICommentState>
                 label="Author name"
                 className="mr-xs"
                 defaultValue={this.editing.author && this.editing.author.name}
-                onChange={(e,{value}) => {this.editing.editedAuthorName = value}}
+                onChange={(e,{ value }) => {this.editing.editedAuthorName = value}}
               />
               <Input
                 label="Comment"
                 defaultValue={this.editing.comment && this.editing.comment.text}
-                onChange={(e,{value}) => {this.editing.editedComment = value}}
+                onChange={(e,{ value }) => {this.editing.editedComment = value}}
               />
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.closeModal}>
+            <Button color="black" onClick={this.closeModal}>
               Nope
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content="Save" onClick={this.updateComment} />
+            <Button positive icon="checkmark" labelPosition="right" content="Save" onClick={this.updateComment} />
           </Modal.Actions>
         </Modal>
       </Comment.Group>

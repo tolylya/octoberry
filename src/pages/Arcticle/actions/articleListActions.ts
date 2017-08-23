@@ -24,7 +24,7 @@ export function changeMode(value: string) {
       type: CHANGE_MODE,
       payload: value
     });
-  }
+  };
 }
 
 export function selectAuthor(authorId: string | null) {
@@ -33,7 +33,7 @@ export function selectAuthor(authorId: string | null) {
       type: SELECT_AUTHOR,
       payload: authorId
     });
-  }
+  };
 }
 
 export function showAuthorComments(authorId: string) {
@@ -42,7 +42,7 @@ export function showAuthorComments(authorId: string) {
       type: SHOW_AUTHOR_COMMENTS,
       payload: authorId
     });
-  }
+  };
 }
 
 export function changeAuthorName(authorId: string, newName: string) {
@@ -51,5 +51,5 @@ export function changeAuthorName(authorId: string, newName: string) {
       type: CHANGE_AUTHOR_NAME,
       payload: { authorId, newName }
     });
-  }
+  };
 }

@@ -24,7 +24,7 @@ class ArticleDetailPage extends React.PureComponent<IArticleDetailProps> {
     let component;
 
     if (status === ARTICLE_LOADING) {
-      component = (<Loader active inline='centered' />);
+      component = (<Loader active inline="centered" />);
     } else if (status === ARTICLE_SUCCESS && !article) {
       component = (<div>Article was not found</div>);
     } else if (status === ARTICLE_SUCCESS && article) {

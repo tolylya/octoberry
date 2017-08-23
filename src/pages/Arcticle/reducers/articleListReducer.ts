@@ -28,16 +28,16 @@ export default function articleList(state: IArticleList = initialState, action: 
       };
 
     case ARTICLES_LOADING:
-      return {...state, articles: [], authors: [], comments: [], status: ARTICLES_LOADING};
+      return { ...state, articles: [], authors: [], comments: [], status: ARTICLES_LOADING };
 
     case CHANGE_MODE:
-      return {...state, mode: action.payload};
+      return { ...state, mode: action.payload };
 
     case SELECT_AUTHOR:
-      return {...state, selectedAuthorId: action.payload};
+      return { ...state, selectedAuthorId: action.payload };
 
     case SHOW_AUTHOR_COMMENTS:
-      return {...state, selectedAuthorId: action.payload, mode: 'comments'};
+      return { ...state, selectedAuthorId: action.payload, mode: 'comments' };
 
     case CHANGE_AUTHOR_NAME: {
       const newState = cloneDeep(state);
@@ -52,8 +52,8 @@ export default function articleList(state: IArticleList = initialState, action: 
       const newState = cloneDeep(state);
 
       if (newState.articles.length) {
-        let changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
-        let changedComment = newState.comments
+        const changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
+        const changedComment = newState.comments
           .find((comment: IComment) => comment.id === action.payload.comment.id);
 
         if (changedComment && changedAuthor) {

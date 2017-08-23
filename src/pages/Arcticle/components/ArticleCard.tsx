@@ -26,7 +26,7 @@ class ArticleCard extends React.PureComponent<IArticleProps> {
   };
 
   toggleEditAuthorName = () => {
-    this.setState({editingName: !this.state.editingName});
+    this.setState({ editingName: !this.state.editingName });
   };
 
   render() {
@@ -41,7 +41,7 @@ class ArticleCard extends React.PureComponent<IArticleProps> {
             type="text"
             defaultValue={this.props.author.name}
             autoFocus
-            ref={(input) => this.inputOfAuthorName = input}
+            ref={input => this.inputOfAuthorName = input}
             onBlur={this.toggleEditAuthorName}
             onKeyUp={this.handleKeyUp}
           />
@@ -51,7 +51,7 @@ class ArticleCard extends React.PureComponent<IArticleProps> {
       authorName = (
         <span>
           <span onClick={this.toggleEditAuthorName}>
-            <Icon name='edit' />
+            <Icon name="edit" />
           </span>
           <span onClick={this.showAuthorComments}>
             {articleAuthor.name}
@@ -72,7 +72,7 @@ class ArticleCard extends React.PureComponent<IArticleProps> {
         </Card.Content>
         <Card.Content extra>
           <Link to={`/articles/${id}`}>
-            <Icon name='comment' />
+            <Icon name="comment" />
             {comments.length} Comments
           </Link>
         </Card.Content>

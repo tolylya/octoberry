@@ -31,7 +31,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
     } else if (status === ARTICLES_SUCCESS) {
       if (mode === 'articles') {
         component = (
-          articles.map(article => {
+          articles.map((article) => {
             const author = authors.find(author => author.id === article.author);
             return (
               <Article
@@ -50,13 +50,13 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
         );
       }
     } else {
-      component = <Loader active inline='centered' />;
+      component = <Loader active inline="centered" />;
     }
 
     return (
       <div>
-        <Header as='h2' dividing>
-          <Icon name={mode==='comments'?'comments':'tags'} />
+        <Header as="h2" dividing>
+          <Icon name={mode === 'comments' ? 'comments' : 'tags'} />
           <Header.Content className="capitalize">
             {mode}
           </Header.Content>

@@ -1,4 +1,12 @@
 {
     "defaultSeverity": "error",
-    "extends": "tslint-config-airbnb"
+    "extends": "tslint-config-airbnb",
+    "rules": {
+      "trailing-comma": false,
+      "max-line-length": [130],
+      "prefer-array-literal": false,
+      "semicolon": false,
+      "import-name": false,
+      "object-literal-key-quotes": false
+    }
 }
