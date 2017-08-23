@@ -32,11 +32,16 @@ class CommentComponent extends React.PureComponent<ICommentProps, ICommentState>
   render() {
     const { comments, authors } = this.props;
     const { modalOpened } = this.state;
+    const authorsObj: any = {};
+
+    for (const author of authors) {
+      authorsObj[author.id] = author;
+    }
 
     return (
       <Comment.Group>
         {comments.map((comment) => {
-          const author = authors.find(author => author.id === comment.commenter);
+          const author = authorsObj[comment.commenter];
 
           return (
             <Comment key={comment.id}>
