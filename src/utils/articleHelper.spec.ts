@@ -37,13 +37,16 @@ describe('Helpers::Article', () => {
   });
 
   it('should return all authors of article', () => {
-    const expected = [{
-      'id': '1',
-      'name': 'Polly Jane'
-    }, {
-      'id': '2',
-      'name': 'John Galt'
-    }];
+    const expected = {
+      '1': {
+        'id': '1',
+        'name': 'Polly Jane'
+      },
+      '2': {
+        'id': '2',
+        'name': 'John Galt'
+      }
+    };
 
     expect(getAuthors(articles)).toEqual(expected);
   });

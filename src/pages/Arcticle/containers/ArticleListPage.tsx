@@ -10,7 +10,7 @@ import {
 } from '../actions/articleListActions';
 import { IArticleList } from '../reducers/articleListReducer';
 import { ARTICLES_SUCCESS } from '../../../constants/actionTypes';
-import { IArticleTransformed, IAuthor, ICommentTransformed } from '../../../interfaces/article';
+import { IArticleTransformed, IAuthorsObj, ICommentTransformed } from '../../../interfaces/article';
 import { updateComment } from '../actions/articleDetailActions';
 
 class ArticleListPage extends React.PureComponent<IArticleListProps> {
@@ -32,7 +32,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
       if (mode === 'articles') {
         component = (
           articles.map((article) => {
-            const author = authors.find(author => author.id === article.author);
+            const author = authors[article.author];
             return (
               <Article
                 key={article.id}
@@ -83,7 +83,7 @@ class ArticleListPage extends React.PureComponent<IArticleListProps> {
 interface IArticleListProps {
   status: string;
   articles: Array<IArticleTransformed>;
-  authors: Array<IAuthor>;
+  authors: IAuthorsObj;
   actions: {
     showAuthorComments: Function;
     selectAuthor: Function;

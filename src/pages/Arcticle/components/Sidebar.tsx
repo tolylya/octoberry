@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Radio, Dropdown } from 'semantic-ui-react';
-import { IAuthor } from '../../../interfaces/article';
+import { IAuthorsObj } from '../../../interfaces/article';
 
 class Sidebar extends React.PureComponent<ISidebarProps> {
 
@@ -12,10 +12,24 @@ class Sidebar extends React.PureComponent<ISidebarProps> {
     this.props.selectAuthor(value);
   };
 
+  getOptions = (authors: IAuthorsObj) => {
+    const options: any = [{ value: null, text: 'Select author' }];
+
+    for (const key in authors) {
+      if (authors.hasOwnProperty(key)) {
+        options.push({
+          text: authors[key].name,
+          value: authors[key].id
+        });
+      }
+    }
+
+    return options;
+  };
+
   render() {
-    const { authors } = this.props;
-    const options = authors.map((author) => {return { value: author.id, text: author.name }});
-    options.unshift({ value: null, text: 'Select author' });
+    const { authors, selectedAuthorId } = this.props;
+    const options: any = this.getOptions(authors);
 
     return (
       <div>
@@ -42,7 +56,7 @@ class Sidebar extends React.PureComponent<ISidebarProps> {
           selection
           placeholder="Select author"
           options={options}
-          value={this.props.selectedAuthorId}
+          value={selectedAuthorId}
           onChange={this.selectAuthor}
         />
       </div>
@@ -51,7 +65,7 @@ class Sidebar extends React.PureComponent<ISidebarProps> {
 }
 
 interface ISidebarProps {
-  authors: Array<IAuthor>;
+  authors: IAuthorsObj;
   mode: string;
   changeMode: Function;
   selectAuthor: Function;

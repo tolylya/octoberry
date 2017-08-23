@@ -5,7 +5,7 @@ import { Loader, Header, Grid, Image, Divider } from 'semantic-ui-react';
 import { fetchArticle, updateComment } from '../actions/articleDetailActions';
 import { changeAuthorName, showAuthorComments } from '../actions/articleListActions';
 import { IArticleDetail } from '../reducers/articleDetailReducer';
-import { IArticleTransformed, IAuthor } from '../../../interfaces/article';
+import { IArticleTransformed, IAuthorsObj } from '../../../interfaces/article';
 import { ARTICLE_LOADING, ARTICLE_SUCCESS } from '../../../constants/actionTypes';
 import CommentsComponent from '../components/Comments';
 
@@ -20,7 +20,6 @@ class ArticleDetailPage extends React.PureComponent<IArticleDetailProps> {
 
   render() {
     const { article, authors, status } = this.props;
-    const authorOfArticle = authors.find(author => author.id === article.author);
     let component;
 
     if (status === ARTICLE_LOADING) {
@@ -28,6 +27,8 @@ class ArticleDetailPage extends React.PureComponent<IArticleDetailProps> {
     } else if (status === ARTICLE_SUCCESS && !article) {
       component = (<div>Article was not found</div>);
     } else if (status === ARTICLE_SUCCESS && article) {
+      const authorOfArticle = authors[article.author];
+
       component = (
         <Grid>
           <Grid.Column width={10}>
@@ -68,7 +69,7 @@ interface IArticleDetailProps {
     updateComment: Function;
   };
   article: IArticleTransformed;
-  authors: Array<IAuthor>;
+  authors: IAuthorsObj;
   status: string;
   params: {
     id: string

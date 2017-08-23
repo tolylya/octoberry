@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Comment, Modal, Button, Icon, Input } from 'semantic-ui-react';
-import { IAuthor, ICommentTransformed } from '../../../interfaces/article';
+import { IAuthor, ICommentTransformed, IAuthorsObj } from '../../../interfaces/article';
 
 const men = require('./../imgs/1.png');
 const girl = require('./../imgs/2.png');
@@ -32,16 +32,11 @@ class CommentsComponent extends React.PureComponent<ICommentProps, ICommentState
   render() {
     const { comments, authors } = this.props;
     const { modalOpened } = this.state;
-    const authorsObj: any = {};
-
-    for (const author of authors) {
-      authorsObj[author.id] = author;
-    }
 
     return (
       <Comment.Group>
         {comments.map((comment) => {
-          const author = authorsObj[comment.commenter];
+          const author = authors[comment.commenter];
 
           return (
             <Comment key={comment.id}>
@@ -95,7 +90,7 @@ class CommentsComponent extends React.PureComponent<ICommentProps, ICommentState
 
 interface ICommentProps {
   comments: Array<ICommentTransformed>;
-  authors: Array<IAuthor>
+  authors: IAuthorsObj;
   updateComment: Function;
 }
 

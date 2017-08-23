@@ -13,7 +13,7 @@ describe('Reducers::ArticleDetail', () => {
 
   it('should handle ARTICLE_LOADING', () => {
     const action = { type: ARTICLE_LOADING };
-    const expected: any = {...initialState, article: null, authors: [], status: ARTICLE_LOADING};
+    const expected: any = { ...initialState, article: null, authors: [], status: ARTICLE_LOADING };
 
     expect(reducer(initialState, action)).toEqual(expected);
   });
@@ -34,10 +34,10 @@ describe('Reducers::ArticleDetail', () => {
   it('should handle UPDATE_COMMENT', () => {
     const state = {
       status: ARTICLE_SUCCESS,
-      authors: [{
+      authors: {'1': {
         id: '1',
         name: 'Polly Jane'
-      }],
+      }},
       article: {
         id: '1',
         author: '1',
@@ -68,10 +68,12 @@ describe('Reducers::ArticleDetail', () => {
     };
     const expected: any = {
       status: ARTICLE_SUCCESS,
-      authors: [{
-        id: '1',
-        name: 'Polly Jane11'
-      }],
+      authors: {
+        '1': {
+          id: '1',
+          name: 'Polly Jane11'
+        }
+      },
       article: {
         id: '1',
         author: '1',

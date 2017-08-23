@@ -1,12 +1,12 @@
 import { ARTICLE_LOADING, ARTICLE_SUCCESS, UPDATE_COMMENT } from '../../../constants/actionTypes';
 import { getAuthors, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor, ICommentTransformed } from '../../../interfaces/article';
+import { IArticleTransformed, IAuthor, IAuthorsObj, ICommentTransformed } from '../../../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 
 export const initialState: IArticleDetail = {
   status: ARTICLE_LOADING,
-  authors: [],
+  authors: {},
   article: null
 };
 
@@ -28,7 +28,7 @@ export default function articleDetail(state: IArticleDetail = initialState, acti
       const newState = cloneDeep(state);
 
       if (newState.article) {
-        const changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
+        const changedAuthor: IAuthor = newState.authors[action.payload.author.id];
         const changedComment = newState.article.comments
           .find((comment: ICommentTransformed) => comment.id === action.payload.comment.id);
 
@@ -44,6 +44,6 @@ export default function articleDetail(state: IArticleDetail = initialState, acti
 
 export interface IArticleDetail {
   article: IArticleTransformed;
-  authors: Array<IAuthor>;
+  authors: IAuthorsObj;
   status: string;
 }

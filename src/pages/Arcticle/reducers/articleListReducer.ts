@@ -3,14 +3,14 @@ import {
   UPDATE_COMMENT
 } from '../../../constants/actionTypes';
 import { getAuthors, getComments, normalizeArticles } from '../../../utils/articlesHelper';
-import { IArticleTransformed, IAuthor, IComment, ICommentTransformed } from '../../../interfaces/article';
+import { IArticleTransformed, IAuthor, IAuthorsObj, IComment, ICommentTransformed } from '../../../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 
 export const initialState: IArticleList = {
   articles: [],
   status: ARTICLES_LOADING,
-  authors: [],
+  authors: {},
   selectedAuthorId: null,
   comments: [],
   mode: 'articles'
@@ -28,7 +28,7 @@ export default function articleList(state: IArticleList = initialState, action: 
       };
 
     case ARTICLES_LOADING:
-      return { ...state, articles: [], authors: [], comments: [], status: ARTICLES_LOADING };
+      return { ...state, articles: [], authors: {}, comments: [], status: ARTICLES_LOADING };
 
     case CHANGE_MODE:
       return { ...state, mode: action.payload };
@@ -41,7 +41,7 @@ export default function articleList(state: IArticleList = initialState, action: 
 
     case CHANGE_AUTHOR_NAME: {
       const newState = cloneDeep(state);
-      const author = newState.authors.find((author: IAuthor) => author.id === action.payload.authorId);
+      const author = newState.authors[action.payload.authorId];
 
       author.name = action.payload.newName;
 
@@ -52,7 +52,7 @@ export default function articleList(state: IArticleList = initialState, action: 
       const newState = cloneDeep(state);
 
       if (newState.articles.length) {
-        const changedAuthor: IAuthor = newState.authors.find((author: IAuthor) => author.id === action.payload.author.id);
+        const changedAuthor: IAuthor = newState.authors[action.payload.author.id];
         const changedComment = newState.comments
           .find((comment: IComment) => comment.id === action.payload.comment.id);
 
@@ -73,7 +73,7 @@ export default function articleList(state: IArticleList = initialState, action: 
 export interface IArticleList {
   articles: Array<IArticleTransformed>;
   status: string;
-  authors: Array<IAuthor>;
+  authors: IAuthorsObj;
   selectedAuthorId: string;
   comments: Array<ICommentTransformed>;
   mode: string;

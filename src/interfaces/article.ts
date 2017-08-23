@@ -32,3 +32,6 @@ export interface ICommentTransformed extends ICommentBase {
   commenter: string;
 }
 
+export interface IAuthorsObj {
+  [name: string]: IAuthor;
+}

@@ -1,25 +1,25 @@
-import { IArticle, IArticleTransformed, IAuthor, ICommentTransformed } from '../interfaces/article';
+import { IArticle, IArticleTransformed, ICommentTransformed, IAuthorsObj } from '../interfaces/article';
 
 const cloneDeep = require('clone-deep');
 
-export function getAuthors(articles: Array<IArticle>): Array<IAuthor> {
-  const authors: Array<IAuthor> = [];
+export function getAuthors(articles: Array<IArticle>): IAuthorsObj {
   const authorsId: Array<string> = [];
+  const authorsObj: IAuthorsObj = {};
 
   for (const article of articles) {
     if (!authorsId.includes(article.author.id)) {
-      authors.push(article.author);
+      authorsObj[article.author.id] = article.author;
       authorsId.push(article.author.id);
     }
     for (const comment of article.comments) {
       if (!authorsId.includes(comment.commenter.id)) {
-        authors.push(comment.commenter);
+        authorsObj[comment.commenter.id] = comment.commenter;
         authorsId.push(comment.commenter.id);
       }
     }
   }
 
-  return authors;
+  return authorsObj;
 }
 
 export function normalizeArticles(articles: Array<IArticle>): Array<IArticleTransformed> {

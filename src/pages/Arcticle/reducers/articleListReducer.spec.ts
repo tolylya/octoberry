@@ -29,7 +29,7 @@ describe('Reducers::ArticleList', () => {
 
   it('should handle ARTICLES_LOADING', () => {
     const action = { type: ARTICLES_LOADING };
-    const expected: any = {...initialState, status: ARTICLES_LOADING};
+    const expected: any = { ...initialState, status: ARTICLES_LOADING };
 
     expect(reducer(initialState, action)).toEqual(expected);
   });
@@ -50,13 +50,16 @@ describe('Reducers::ArticleList', () => {
           'commenter': '2'
         }]
       }],
-      authors: [{
-        'id': '1',
-        'name': 'Polly Jane'
-      }, {
-        'id': '2',
-        'name': 'John Galt'
-      }],
+      authors: {
+        '1': {
+          'id': '1',
+          'name': 'Polly Jane'
+        },
+        '2': {
+          'id': '2',
+          'name': 'John Galt'
+        }
+      },
       comments: [{
         'id': '1',
         'text': 'Paris is so cool!',
@@ -69,21 +72,21 @@ describe('Reducers::ArticleList', () => {
 
   it('should handle CHANGE_MODE', () => {
     const action = { type: CHANGE_MODE, payload: 'comments' };
-    const expected: any = {...initialState, mode: 'comments'};
+    const expected: any = { ...initialState, mode: 'comments' };
 
     expect(reducer(initialState, action)).toEqual(expected);
   });
 
   it('should handle SELECT_AUTHOR', () => {
     const action = { type: SELECT_AUTHOR, payload: '2' };
-    const expected: any = {...initialState, selectedAuthorId: '2'};
+    const expected: any = { ...initialState, selectedAuthorId: '2' };
 
     expect(reducer(initialState, action)).toEqual(expected);
   });
 
   it('should handle SHOW_AUTHOR_COMMENTS', () => {
     const action = { type: SHOW_AUTHOR_COMMENTS, payload: '2' };
-    const expected: any = {...initialState, selectedAuthorId: '2', mode: 'comments'};
+    const expected: any = { ...initialState, selectedAuthorId: '2', mode: 'comments' };
 
     expect(reducer(initialState, action)).toEqual(expected);
   });
@@ -91,10 +94,12 @@ describe('Reducers::ArticleList', () => {
   it('should handle CHANGE_AUTHOR_NAME', () => {
     const state = {
       ...initialState,
-      authors: [{
-        'id': '2',
-        'name': 'Polly Jane'
-      }],
+      authors: {
+        '2': {
+          'id': '2',
+          'name': 'Polly Jane'
+        }
+      },
       mode: 'comments'
     };
     const action = {
@@ -106,10 +111,12 @@ describe('Reducers::ArticleList', () => {
     };
     const expected = {
       ...initialState,
-      authors: [{
-        'id': '2',
-        'name': 'Lol'
-      }],
+      authors: {
+        '2': {
+          'id': '2',
+          'name': 'Lol'
+        }
+      },
       mode: 'comments'
     };
 
@@ -120,10 +127,12 @@ describe('Reducers::ArticleList', () => {
     const state: any = {
       ...initialState,
       articles,
-      authors: [{
-        id: '1',
-        name: 'Polly Jane'
-      }],
+      authors: {
+        '1': {
+          id: '1',
+          name: 'Polly Jane'
+        }
+      },
       comments: [{
         id: '1',
         text: 'Paris is so cool!',
@@ -149,10 +158,12 @@ describe('Reducers::ArticleList', () => {
     const expected = {
       ...initialState,
       articles,
-      authors: [{
-        id: '1',
-        name: 'Polly Jane11'
-      }],
+      authors: {
+        '1': {
+          id: '1',
+          name: 'Polly Jane11'
+        }
+      },
       comments: [{
         id: '1',
         text: 'Lol',
